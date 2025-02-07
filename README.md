@@ -1,5 +1,5 @@
 # ttyconsole
-units for tty console
+LAZARUS units for tty console
 
 ## uttyansi.pas
 This unit replaces the use of CRT, it uses ANSI sequences
