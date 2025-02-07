@@ -6,7 +6,7 @@
    Date        : 01/02/2025
 
    Description : This unit converts and displays csv tables into text tables
-                 based on the ttyconsole unit in ANSI sequences.
+                 based on the uttyansi unit in ANSI sequences.
 
    WARNING     : This program does not use the CRT unit, because it disrupts
                  the proper functioning of the console, especially for launched
