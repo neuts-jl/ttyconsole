@@ -43,15 +43,15 @@ const
   Blue         = 4;
   Magenta      = 5;
   Cyan         = 6;
-  White        = 7;
   Gray         = 8;
+  White        = 15;
   LightRed     = 9;
   LightGreen   = 10;
   LightYellow  = 11;
   LightBlue    = 12;
   LightMagenta = 13;
   LightCyan    = 14;
-  LightWhite   = 15;
+  LightGray    = 7;
 
 procedure ClrScr;
 procedure ClrScr(x1, y1, x2, y2:integer);overload;
@@ -63,6 +63,7 @@ procedure ClrEos;
 procedure ClrBos;
 procedure GotoHome;
 procedure GotoXY(x, y:integer);
+procedure GotoX(x: integer);
 procedure CursorOff;
 procedure CursorOn;
 procedure CursorBlocFix;
@@ -81,7 +82,7 @@ uses
   {$IFDEF LINUX}
     BaseUnix, Termio;
   {$ENDIF}
-  {$IFDEF WINDOWS}
+                {$IFDEF WINDOWS}
     Windows;
   {$ENDIF}
 
@@ -137,6 +138,11 @@ end;
 procedure GotoXY(x, y:integer);
 begin
   Write(#27'[', y, ';', x, 'H');
+end;
+
+procedure GotoX(x: integer);
+begin
+  Write(#27'[', x, 'G');
 end;
 
 procedure CursorOff;

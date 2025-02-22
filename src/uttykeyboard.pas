@@ -30,49 +30,52 @@ unit uttykeyboard;
 {$mode ObjFPC}{$H+}
 
 interface
+uses
+  Classes, sysutils, uttyansi;
 
 type
-  TKeysArray = array of Integer;
+  TKeysArray = array of integer;
 
 const
-  vkUp        =  $FF26;
-  vkPageUp    =  $FF21;
-  vkDown      =  $FF28;
-  vkPageDown  =  $FF22;
-  vkRight     =  $FF27;
-  vkLeft      =  $FF25;
-  vkDelete    =  $FF2E;
-  vkIns       =  $FF2D;
-  vkBack      =  $0008;
-  vkTab       =  $0009;
-  vkShiftTab  =  $FF09;
-  vkReturn    =  $000D;
-  vkEscape    =  $001B;
-  vkHome      =  $FF24;
-  vkEnd       =  $FF23;
+  vkUp = $FF26;
+  vkPageUp = $FF21;
+  vkDown = $FF28;
+  vkPageDown = $FF22;
+  vkRight = $FF27;
+  vkLeft = $FF25;
+  vkDelete = $FF2E;
+  vkIns = $FF2D;
+  vkBack = $0008;
+  vkTab = $0009;
+  vkShiftTab = $FF09;
+  vkReturn = $000D;
+  vkEscape = $001B;
+  vkHome = $FF24;
+  vkEnd = $FF23;
 
-  vkF1        =  $FF70;
-  vkF2        =  $FF71;
-  vkF3        =  $FF72;
-  vkF4        =  $FF73;
-  vkF5        =  $FF74;
-  vkF6        =  $FF75;
-  vkF7        =  $FF76;
-  vkF8        =  $FF77;
-  vkF9        =  $FF78;
-  vkF10       =  $FF79;
-  vkF11       =  $FF7A;
-  vkF12       =  $FF7B;
+  vkF1 = $FF70;
+  vkF2 = $FF71;
+  vkF3 = $FF72;
+  vkF4 = $FF73;
+  vkF5 = $FF74;
+  vkF6 = $FF75;
+  vkF7 = $FF76;
+  vkF8 = $FF77;
+  vkF9 = $FF78;
+  vkF10 = $FF79;
+  vkF11 = $FF7A;
+  vkF12 = $FF7B;
 
 
-function KeyPressed:boolean;
-function ReadKeyboard:integer;
-function IsKeyInSet(key: Integer; const Keys: TKeysArray): Boolean;
+function KeyPressed: boolean;
+function ReadKeyboard: integer;
+function IsKeyInSet(key: integer; const Keys: TKeysArray): boolean;
 
 implementation
+
 {$IFDEF WINDOWS}
 uses
-  Windows,sysutils;
+  Windows;
 
 var
   stdin:THandle;
@@ -171,7 +174,7 @@ end;
 
 {$IFDEF LINUX}
 uses
-  Sysutils, BaseUnix, Unix, termio;
+  BaseUnix, Unix, termio;
 
 function KeyPressed: Boolean;
 var
@@ -286,9 +289,9 @@ end;
 
 {$ENDIF}
 
-function IsKeyInSet(key: Integer; const Keys: TKeysArray): Boolean;
+function IsKeyInSet(key: integer; const Keys: TKeysArray): boolean;
 var
-  i: Integer;
+  i: integer;
 begin
   Result := False;
   for i := 0 to High(Keys) do
@@ -298,9 +301,9 @@ begin
   end;
 end;
 
-begin
+
+initialization
   {$IFDEF WINDOWS}
     StdIn:=0;
   {$ENDIF}
 end.
-
